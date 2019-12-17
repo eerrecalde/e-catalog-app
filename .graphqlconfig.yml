@@ -1,0 +1,18 @@
+projects:
+  MyCatalogItems:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: eu-west-2
+        apiId: yyuiibkk4rhjrh74okwum2pubq
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3
