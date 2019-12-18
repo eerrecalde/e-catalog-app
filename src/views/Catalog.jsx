@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsGrid from '../components/ItemsGrid';
+import ItemsGrid from '../components/ItemsGrid/ItemsGrid';
 
 function Catalog() {
   return (

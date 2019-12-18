@@ -18,5 +18,11 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'arrow-parens': [2, 'as-needed'],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.stories.jsx'],
+      },
+    ],
   },
 };
