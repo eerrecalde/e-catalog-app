@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import useItemsRequester from '../../hooks/use-items-requester';
+import useItemsMutations from '../../hooks/use-items-mutations';
 import useFormInputHandle from '../../hooks/use-form-input-handle';
 
 function ItemFormView({ item } = {}) {
@@ -46,7 +46,7 @@ function ItemFormView({ item } = {}) {
     setInputs(defaultFormData);
   }
 
-  const { error, loading } = useItemsRequester({
+  const { error, loading } = useItemsMutations({
     item: formItem,
     itemOperation,
     setItemOperation,

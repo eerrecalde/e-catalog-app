@@ -2,13 +2,8 @@ import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 
 import { getMyCatalogItems, listMyCatalogItems } from '../graphql/queries';
-import {
-  createMyCatalogItems,
-  updateMyCatalogItems,
-  deleteMyCatalogItems,
-} from '../graphql/mutations';
 
-const useItemsRequester = (initialValues, callback) => {
+const useItemsRequester = initialValues => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [error, setError] = useState('');
@@ -39,35 +34,6 @@ const useItemsRequester = (initialValues, callback) => {
       console.log('>', data.data.getMyCatalogItems);
     }
 
-    async function setNewItem() {
-      initialValues.setItemOperation('getItems');
-      const res = await API.graphql(
-        graphqlOperation(createMyCatalogItems, { input: initialValues.item }),
-      );
-
-      console.log('Success', res);
-      callback('recipe added');
-    }
-
-    async function deleteItem(id) {
-      initialValues.setItemOperation('getItems');
-      const res = await API.graphql(graphqlOperation(deleteMyCatalogItems, { input: { id } }));
-
-      const tmpId = res.data.deleteItem.id;
-      console.log('Success', res.data.deleteMyCatalogItems, tmpId);
-      callback('Item removed: ', tmpId);
-    }
-
-    async function updateItem() {
-      initialValues.setItemOperation('getItems');
-      const res = await API.graphql(
-        graphqlOperation(updateMyCatalogItems, { input: initialValues.item }),
-      );
-
-      console.log('Success', res);
-      callback('Item updated!');
-    }
-
     if (!initialValues.itemOperation) {
       return;
     }
@@ -81,37 +47,8 @@ const useItemsRequester = (initialValues, callback) => {
     if (initialValues.itemOperation === 'getItemById' && initialValues.item.id) {
       console.log('gettingItem');
       asyncRequest(() => getItemById(initialValues.item.id));
-      return;
     }
-
-    if (!initialValues.item) {
-      return;
-    }
-
-    if (
-      initialValues.item.title !== '' &&
-      !initialValues.item.id &&
-      initialValues.itemOperation === 'create'
-    ) {
-      console.log('creatingItem', initialValues.item);
-      asyncRequest(setNewItem);
-      return;
-    }
-
-    if (
-      initialValues.item.title !== '' &&
-      initialValues.item.id &&
-      initialValues.itemOperation === 'update'
-    ) {
-      console.log('updating item', initialValues.item);
-      asyncRequest(updateItem);
-    }
-
-    if (initialValues.item.id && initialValues.itemOperation === 'delete') {
-      console.log('removing item');
-      asyncRequest(() => deleteItem(initialValues.itemOperation.id));
-    }
-  }, [initialValues, callback]);
+  }, [initialValues]);
 
   return {
     error,
