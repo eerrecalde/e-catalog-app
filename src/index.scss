@@ -1,0 +1,15 @@
+@import './scss/custom';
+@import './scss/components';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/forms';
+@import './scss/dark-mode';
+
+ul {
+  padding-left: 0;
+}
+
+ul > li {
+  list-style-type: none;
+}

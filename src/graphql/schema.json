@@ -153,6 +153,17 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "imgUrl",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "price",
           "description" : null,
           "args" : [ ],
@@ -277,6 +288,15 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "TableStringFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "imgUrl",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
             "ofType" : null
           },
           "defaultValue" : null
@@ -733,6 +753,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "imgUrl",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "price",
           "description" : null,
           "type" : {
@@ -804,6 +833,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "imgUrl",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "price",
           "description" : null,
           "type" : {
@@ -846,15 +884,6 @@
           "name" : "onCreateMyCatalogItems",
           "description" : null,
           "args" : [ {
-            "name" : "id",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
             "name" : "title",
             "description" : null,
             "type" : {
@@ -887,6 +916,15 @@
             "defaultValue" : null
           }, {
             "name" : "url",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "imgUrl",
             "description" : null,
             "type" : {
               "kind" : "SCALAR",
@@ -906,15 +944,6 @@
           "name" : "onUpdateMyCatalogItems",
           "description" : null,
           "args" : [ {
-            "name" : "id",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
             "name" : "title",
             "description" : null,
             "type" : {
@@ -947,6 +976,15 @@
             "defaultValue" : null
           }, {
             "name" : "url",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "imgUrl",
             "description" : null,
             "type" : {
               "kind" : "SCALAR",
@@ -966,15 +1004,6 @@
           "name" : "onDeleteMyCatalogItems",
           "description" : null,
           "args" : [ {
-            "name" : "id",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
             "name" : "title",
             "description" : null,
             "type" : {
@@ -1007,6 +1036,15 @@
             "defaultValue" : null
           }, {
             "name" : "url",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "imgUrl",
             "description" : null,
             "type" : {
               "kind" : "SCALAR",
@@ -1991,23 +2029,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -2061,6 +2082,23 @@
             }
           },
           "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
         } ],
         "onOperation" : false,
         "onFragment" : false,

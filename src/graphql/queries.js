@@ -8,6 +8,7 @@ export const getMyCatalogItems = `query GetMyCatalogItems($id: ID!) {
     description
     tags
     url
+    imgUrl
     price
   }
 }
@@ -24,6 +25,7 @@ export const listMyCatalogItems = `query ListMyCatalogItems(
       description
       tags
       url
+      imgUrl
       price
     }
     nextToken

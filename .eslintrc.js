@@ -24,5 +24,6 @@ module.exports = {
         devDependencies: ['**/*.stories.jsx'],
       },
     ],
+    'operator-linebreak': ['error', 'after'],
   },
 };

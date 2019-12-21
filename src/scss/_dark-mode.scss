@@ -1,0 +1,19 @@
+$dark-body-bg-color: #111;
+$dark-body-color: #eee;
+$dark-mode-dark: $dark;
+$dark-mode-light: $light;
+
+[data-theme='dark'] {
+  background-color: $dark-body-bg-color !important;
+  color: $dark-body-color;
+}
+
+[data-theme='dark'] .card {
+  background-color: $dark-mode-dark !important;
+  color: $dark-mode-light;
+}
+
+[data-theme='dark'] .form-control {
+  background-color: $dark-mode-dark !important;
+  color: $dark-mode-light;
+}

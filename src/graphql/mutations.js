@@ -8,6 +8,7 @@ export const createMyCatalogItems = `mutation CreateMyCatalogItems($input: Creat
     description
     tags
     url
+    imgUrl
     price
   }
 }
@@ -19,6 +20,7 @@ export const updateMyCatalogItems = `mutation UpdateMyCatalogItems($input: Updat
     description
     tags
     url
+    imgUrl
     price
   }
 }
@@ -30,6 +32,7 @@ export const deleteMyCatalogItems = `mutation DeleteMyCatalogItems($input: Delet
     description
     tags
     url
+    imgUrl
     price
   }
 }

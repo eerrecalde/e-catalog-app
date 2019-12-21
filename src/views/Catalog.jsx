@@ -1,9 +1,9 @@
 import React from 'react';
-import ItemsGrid from '../components/ItemsGrid/ItemsGrid';
+import ItemsGrid from '../components/grid/grid';
 
 function Catalog() {
   return (
-    <div className="Catalog">
+    <div className="catalog">
       <ItemsGrid />
     </div>
   );

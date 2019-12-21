@@ -1,12 +1,60 @@
 import React from 'react';
 import './App.css';
-import Catalog from './views/Catalog';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+
+import { routes } from './routes';
+import DarkSwitch from './components/DarkSwitch/DarkSwitch';
 
 function App() {
   return (
-    <div className="App">
-      <Catalog />
-    </div>
+    <Router>
+      <div>
+
+        <nav className="container my-3">
+          <ul className="nav nav-pills">
+            {
+              routes.map(({ path, name, hidden }) => (
+                (hidden ? '' : (
+                  <li
+                    key={path}
+                    className="nav-item"
+                  >
+                    <NavLink
+                      exact={path === '/'}
+                      className="nav-link"
+                      to={path}
+                    >
+                      {name}
+                    </NavLink>
+                  </li>
+                ))
+              ))
+            }
+            <DarkSwitch isChecked={localStorage.getItem('darkSwitch') !== null &&
+              localStorage.getItem('darkSwitch') === 'dark'}
+            />
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          {routes.map(({ path, component }) => (
+            <Route
+              exact={path === '/'}
+              key={path}
+              path={path}
+              component={component}
+            />
+          ))}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

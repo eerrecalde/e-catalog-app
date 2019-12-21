@@ -2,70 +2,73 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateMyCatalogItems = `subscription OnCreateMyCatalogItems(
-  $id: ID
   $title: String
   $description: String
   $tags: [String]
   $url: String
+  $imgUrl: String
 ) {
   onCreateMyCatalogItems(
-    id: $id
     title: $title
     description: $description
     tags: $tags
     url: $url
+    imgUrl: $imgUrl
   ) {
     id
     title
     description
     tags
     url
+    imgUrl
     price
   }
 }
 `;
 export const onUpdateMyCatalogItems = `subscription OnUpdateMyCatalogItems(
-  $id: ID
   $title: String
   $description: String
   $tags: [String]
   $url: String
+  $imgUrl: String
 ) {
   onUpdateMyCatalogItems(
-    id: $id
     title: $title
     description: $description
     tags: $tags
     url: $url
+    imgUrl: $imgUrl
   ) {
     id
     title
     description
     tags
     url
+    imgUrl
     price
   }
 }
 `;
 export const onDeleteMyCatalogItems = `subscription OnDeleteMyCatalogItems(
-  $id: ID
   $title: String
   $description: String
   $tags: [String]
   $url: String
+  $imgUrl: String
 ) {
   onDeleteMyCatalogItems(
-    id: $id
     title: $title
     description: $description
     tags: $tags
     url: $url
+    imgUrl: $imgUrl
   ) {
     id
     title
     description
     tags
     url
+    imgUrl
     price
   }
 }
