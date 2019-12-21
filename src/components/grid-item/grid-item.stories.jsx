@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import GridItem from './GridItem';
+import GridItem from './grid-item';
 
 const i = {
   id: '1',

@@ -21,14 +21,14 @@ function ItemView() {
 
   return (
     <div>
-      { loading ? (<p>Loading...</p>) : '' }
-      { error ? (<p>{error}</p>) : '' }
       <ItemDetails
         title={item.title}
         price={item.price}
         description={item.description}
         url={item.url}
         imgUrl={item.imgUrl}
+        error={error}
+        loading={loading}
       />
     </div>
   );

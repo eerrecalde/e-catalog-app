@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import ItemsGridView from './ItemsGridView';
+import ItemsGridView from './grid.view';
 
 const item = {
   id: '1',
