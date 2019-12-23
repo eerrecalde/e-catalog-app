@@ -1,1 +1,9 @@
-{}
+{
+	"auth": {
+		"supermanappeb427a82": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

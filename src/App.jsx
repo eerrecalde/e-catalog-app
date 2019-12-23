@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { routes } from './routes';
-import DarkSwitch from './components/DarkSwitch/DarkSwitch';
+import DarkSwitch from './components/dark-mode-switch/dark-mode-switch';
 
 function App() {
   return (
