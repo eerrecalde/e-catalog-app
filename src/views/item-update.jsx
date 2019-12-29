@@ -1,22 +1,20 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ItemDetails from '../components/item-details/item-details';
+import ItemForm from '../components/item-form/item-form';
 
-function ItemView() {
+function ItemCrud() {
   const { id } = useParams();
 
   return (
-    <div>
+    <div className="item-create">
       <div className="container">
         <h3>
-          Item view
+          Edit your item
         </h3>
       </div>
-      <ItemDetails
-        id={id}
-      />
+      <ItemForm id={id} />
     </div>
   );
 }
 
-export default ItemView;
+export default ItemCrud;

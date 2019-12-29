@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import useItemsMutations from '../../hooks/use-items-mutations';
 import useFormInputHandle from '../../hooks/use-form-input-handle';
 
-function ItemFormView({ item } = {}) {
+function ItemFormView({ item, onSubmit } = {}) {
+  console.log('ITM', item);
+
   const defaultFormData = {
     title: '',
     description: '',
@@ -13,12 +14,12 @@ function ItemFormView({ item } = {}) {
     imgUrl: '',
   };
 
-  const [itemOperation, setItemOperation] = useState('');
   const [formItem, setformItem] = useState(defaultFormData);
 
   const {
     inputs, setInputs, handleInputChange, handleSubmit,
   } = useFormInputHandle({
+    id: item.id,
     title: item.title || defaultFormData.title,
     description: item.description || defaultFormData.description,
     price: item.price || defaultFormData.price,
@@ -27,46 +28,41 @@ function ItemFormView({ item } = {}) {
   }, () => {
     console.log('createItem?', inputs, formItem);
 
-    setformItem(inputs);
-
-    if (inputs.title !== '' && !inputs.id) {
-      console.log('creatingItem', formItem);
-      setItemOperation('create');
+    if (!inputs || !Object.keys(inputs).length) {
       return;
     }
 
-    if (inputs.title !== '' && inputs.id) {
-      console.log('updating formItem', formItem);
-      setItemOperation('update');
+    if (inputs.price && typeof inputs.price === 'string') {
+      inputs.price = parseInt(inputs.price, 10);
     }
-  });
+
+    setformItem(inputs);
+
+    const itm = {};
+
+    Object.keys(inputs).forEach(k => {
+      // itm[k] = inputs[k] || null;
+      itm[k] = inputs[k];
+    });
+
+    if (inputs.title !== '' && !inputs.id) {
+      console.log('creatingItem', itm);
+      onSubmit({ type: 'create', item: itm });
+    }
+
+    if (inputs.title !== '' && inputs.id) {
+      console.log('updating formItem', itm);
+      onSubmit({ type: 'update', item: itm });
+    }
+  }, [item]);
 
   // eslint-disable-next-line
   function resetForm() {
     setInputs(defaultFormData);
   }
 
-  const { error, loading } = useItemsMutations({
-    item: formItem,
-    itemOperation,
-    setItemOperation,
-  }, msg => {
-    console.log('done', msg, error, loading);
-    // resetForm();
-    // setAlertWithDelay({
-    //   ...alertDefaultProps, show: true, text: msg || 'no msg',
-    // }, 3000);
-  }, []);
-
   return (
     <div>
-      <h3>
-        Create your new item
-        {(loading ? '...' : '')}
-      </h3>
-      {error ? (
-        <p>{error}</p>
-      ) : ''}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">
@@ -117,6 +113,7 @@ ItemFormView.propTypes = {
     imgUrl: PropTypes.string,
     price: PropTypes.number,
   }),
+  onSubmit: PropTypes.func.isRequired,
 };
 
 ItemFormView.defaultProps = {

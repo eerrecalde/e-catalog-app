@@ -1,55 +1,64 @@
 import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import {
-  createMyCatalogItems,
-  updateMyCatalogItems,
-  deleteMyCatalogItems,
-} from '../graphql/mutations';
+import { createItem, updateItem, deleteItem } from '../graphql/mutations';
 
 const useItemsRequester = (initialValues, callback) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    async function asyncRequest(fun) {
-      try {
-        setLoading(true);
-        fun();
-      } catch (err) {
-        setError(err.errors[0].message);
-        console.log('ERROR >', err.errors[0].message);
-      }
+    function onBeforeAsync(operation) {
+      initialValues.setItemOperation(operation || '');
+      setLoading(true);
+    }
+
+    function onAfterAsyncSuccess(res, msg) {
       setLoading(false);
+      console.table('Success >', res);
+      callback(msg);
     }
 
-    async function setNewItem() {
-      initialValues.setItemOperation('getItems');
-      const res = await API.graphql(
-        graphqlOperation(createMyCatalogItems, { input: initialValues.item }),
-      );
-
-      console.log('Success', res);
-      callback('recipe added');
+    function onAfterAsyncError(err) {
+      setError(err.errors[0].message);
+      setLoading(false);
+      console.error('ERROR >', err.errors[0].message);
     }
 
-    async function deleteItem(id) {
-      initialValues.setItemOperation('getItems');
-      const res = await API.graphql(graphqlOperation(deleteMyCatalogItems, { input: { id } }));
+    async function createItemAction() {
+      onBeforeAsync('getItems');
 
-      const tmpId = res.data.deleteItem.id;
-      console.log('Success', res.data.deleteMyCatalogItems, tmpId);
-      callback('Item removed: ', tmpId);
+      try {
+        const res = await API.graphql(graphqlOperation(createItem, { input: initialValues.item }));
+        onAfterAsyncSuccess(res, 'recipe added');
+      } catch (err) {
+        onAfterAsyncError(err);
+      }
     }
 
-    async function updateItem() {
-      initialValues.setItemOperation('getItems');
-      const res = await API.graphql(
-        graphqlOperation(updateMyCatalogItems, { input: initialValues.item }),
-      );
+    async function deleteItemAction(id) {
+      onBeforeAsync('getItems');
 
-      console.log('Success', res);
-      callback('Item updated!');
+      try {
+        const res = await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
+        const tmpId = res.data.deleteItem.id;
+        onAfterAsyncSuccess(res, `Item removed: ${tmpId}`);
+      } catch (err) {
+        onAfterAsyncError(err);
+      }
     }
+
+    async function updateItemAction() {
+      onBeforeAsync('getItems');
+
+      try {
+        const res = await API.graphql(graphqlOperation(updateItem, { input: initialValues.item }));
+        onAfterAsyncSuccess(res, 'Item updated!');
+      } catch (err) {
+        onAfterAsyncError(err);
+      }
+    }
+
+    console.log('itemsMutations initialValues', initialValues);
 
     if (!initialValues.itemOperation) {
       return;
@@ -65,7 +74,7 @@ const useItemsRequester = (initialValues, callback) => {
       initialValues.itemOperation === 'create'
     ) {
       console.log('creatingItem', initialValues.item);
-      asyncRequest(setNewItem);
+      createItemAction();
       return;
     }
 
@@ -75,14 +84,14 @@ const useItemsRequester = (initialValues, callback) => {
       initialValues.itemOperation === 'update'
     ) {
       console.log('updating item', initialValues.item);
-      asyncRequest(updateItem);
+      updateItemAction();
     }
 
     if (initialValues.item.id && initialValues.itemOperation === 'delete') {
       console.log('removing item');
-      asyncRequest(() => deleteItem(initialValues.itemOperation.id));
+      deleteItemAction(initialValues.itemOperation.id);
     }
-  }, [initialValues, callback]);
+  }, [initialValues]);
 
   return {
     error,

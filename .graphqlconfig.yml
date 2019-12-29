@@ -1,6 +1,6 @@
 projects:
-  MyCatalogItems:
-    schemaPath: src/graphql/schema.json
+  myItems:
+    schemaPath: amplify/backend/api/myItems/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -10,9 +10,6 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
-        region: eu-west-2
-        apiId: yyuiibkk4rhjrh74okwum2pubq
-        maxDepth: 2
 extensions:
   amplify:
     version: 3

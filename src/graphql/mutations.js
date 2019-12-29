@@ -1,8 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createMyCatalogItems = `mutation CreateMyCatalogItems($input: CreateMyCatalogItemsInput!) {
-  createMyCatalogItems(input: $input) {
+export const createItem = `mutation CreateItem($input: CreateItemInput!) {
+  createItem(input: $input) {
     id
     title
     description
@@ -13,8 +13,8 @@ export const createMyCatalogItems = `mutation CreateMyCatalogItems($input: Creat
   }
 }
 `;
-export const updateMyCatalogItems = `mutation UpdateMyCatalogItems($input: UpdateMyCatalogItemsInput!) {
-  updateMyCatalogItems(input: $input) {
+export const updateItem = `mutation UpdateItem($input: UpdateItemInput!) {
+  updateItem(input: $input) {
     id
     title
     description
@@ -25,8 +25,8 @@ export const updateMyCatalogItems = `mutation UpdateMyCatalogItems($input: Updat
   }
 }
 `;
-export const deleteMyCatalogItems = `mutation DeleteMyCatalogItems($input: DeleteMyCatalogItemsInput!) {
-  deleteMyCatalogItems(input: $input) {
+export const deleteItem = `mutation DeleteItem($input: DeleteItemInput!) {
+  deleteItem(input: $input) {
     id
     title
     description

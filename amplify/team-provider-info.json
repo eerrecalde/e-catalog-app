@@ -1,19 +1,14 @@
 {
-    "dev": {
+    "env": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-superman-app-dev-192800-authRole",
-            "UnauthRoleArn": "arn:aws:iam::158607045791:role/amplify-superman-app-dev-192800-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::158607045791:role/amplify-superman-app-dev-192800-authRole",
+            "AuthRoleName": "amplify-superman-app-env-103517-authRole",
+            "UnauthRoleArn": "arn:aws:iam::158607045791:role/amplify-superman-app-env-103517-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::158607045791:role/amplify-superman-app-env-103517-authRole",
             "Region": "eu-west-2",
-            "DeploymentBucketName": "amplify-superman-app-dev-192800-deployment",
-            "UnauthRoleName": "amplify-superman-app-dev-192800-unauthRole",
-            "StackName": "amplify-superman-app-dev-192800",
-            "StackId": "arn:aws:cloudformation:eu-west-2:158607045791:stack/amplify-superman-app-dev-192800/56454460-2103-11ea-bc0d-06af0f49b59c"
-        },
-        "categories": {
-            "auth": {
-                "supermanappeb427a82": {}
-            }
+            "DeploymentBucketName": "amplify-superman-app-env-103517-deployment",
+            "UnauthRoleName": "amplify-superman-app-env-103517-unauthRole",
+            "StackName": "amplify-superman-app-env-103517",
+            "StackId": "arn:aws:cloudformation:eu-west-2:158607045791:stack/amplify-superman-app-env-103517/13a4cbe0-2639-11ea-9ded-0ab07291f102"
         }
     }
 }

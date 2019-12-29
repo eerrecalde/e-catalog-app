@@ -1,8 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getMyCatalogItems = `query GetMyCatalogItems($id: ID!) {
-  getMyCatalogItems(id: $id) {
+export const getItem = `query GetItem($id: ID!) {
+  getItem(id: $id) {
     id
     title
     description
@@ -13,12 +13,12 @@ export const getMyCatalogItems = `query GetMyCatalogItems($id: ID!) {
   }
 }
 `;
-export const listMyCatalogItems = `query ListMyCatalogItems(
-  $filter: TableMyCatalogItemsFilterInput
+export const listItems = `query ListItems(
+  $filter: ModelItemFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMyCatalogItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       title

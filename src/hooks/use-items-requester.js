@@ -1,37 +1,53 @@
 import { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 
-import { getMyCatalogItems, listMyCatalogItems } from '../graphql/queries';
+import { getItem, listItems } from '../graphql/queries';
 
 const useItemsRequester = initialValues => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
+  const [item, setItem] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    async function asyncRequest(fun) {
-      try {
-        setLoading(true);
-        fun();
-      } catch (err) {
-        setError(err.errors[0].message);
-        console.log('ERROR >', err.errors[0].message);
-      }
+    function onBeforeAsync(operation) {
+      initialValues.setItemOperation(operation || '');
+      setLoading(true);
+    }
+
+    function onAfterAsyncSuccess(res) {
       setLoading(false);
+      console.table('Success >', res);
+    }
+
+    function onAfterAsyncError(err) {
+      setError(err.errors[0].message);
+      setLoading(false);
+      console.error('ERROR >', err.errors[0].message);
     }
 
     async function getItemsList() {
-      initialValues.setItemOperation('');
-      const data = await API.graphql(graphqlOperation(listMyCatalogItems));
-      setItems(data.data.listMyCatalogItems.items);
-      console.log('>', data.data.listMyCatalogItems.items);
+      onBeforeAsync('');
+
+      try {
+        const res = await API.graphql(graphqlOperation(listItems));
+        setItems(res.data.listItems.items);
+        onAfterAsyncSuccess(res);
+      } catch (err) {
+        onAfterAsyncError(err);
+      }
     }
 
     async function getItemById(id) {
-      initialValues.setItemOperation('');
-      const data = await API.graphql(graphqlOperation(getMyCatalogItems, { id }));
-      setItems(data.data.getMyCatalogItems);
-      console.log('>', data.data.getMyCatalogItems);
+      onBeforeAsync('');
+
+      try {
+        const res = await API.graphql(graphqlOperation(getItem, { id }));
+        setItem(res.data.getItem);
+        onAfterAsyncSuccess(res);
+      } catch (err) {
+        onAfterAsyncError(err);
+      }
     }
 
     if (!initialValues.itemOperation) {
@@ -40,13 +56,13 @@ const useItemsRequester = initialValues => {
 
     if (initialValues.itemOperation === 'getItems') {
       console.log('gettingItems');
-      asyncRequest(getItemsList);
+      getItemsList();
       return;
     }
 
     if (initialValues.itemOperation === 'getItemById' && initialValues.item.id) {
       console.log('gettingItem');
-      asyncRequest(() => getItemById(initialValues.item.id));
+      getItemById(initialValues.item.id);
     }
   }, [initialValues]);
 
@@ -54,6 +70,7 @@ const useItemsRequester = initialValues => {
     error,
     loading,
     items,
+    item,
   };
 };
 
