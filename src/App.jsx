@@ -7,7 +7,7 @@ import {
   NavLink,
 } from 'react-router-dom';
 
-import { withAuthenticator } from 'aws-amplify-react';
+// import { withAuthenticator } from 'aws-amplify-react';
 
 import { routes } from './routes';
 import DarkSwitch from './components/dark-mode-switch/dark-mode-switch';

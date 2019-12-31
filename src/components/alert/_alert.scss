@@ -2,3 +2,11 @@
   top: 0;
   left: 0;
 }
+
+.alert {
+  display: none;
+
+  .alert-container.show & {
+    display: block;
+  }
+}

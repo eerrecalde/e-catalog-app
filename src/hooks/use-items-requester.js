@@ -21,16 +21,19 @@ const useItemsRequester = initialValues => {
     }
 
     function onAfterAsyncError(err) {
-      setError(err.errors[0].message);
       setLoading(false);
-      console.error('ERROR >', err.errors[0].message);
+      const errorMsg = typeof err === 'string' ? err : err.errors[0].message;
+      console.error('ERROR >', errorMsg);
+      setError(errorMsg);
     }
 
     async function getItemsList() {
       onBeforeAsync('');
 
+      API.configure();
+
       try {
-        const res = await API.graphql(graphqlOperation(listItems));
+        const res = await API.graphql({ query: listItems, authMode: 'API_KEY' });
         setItems(res.data.listItems.items);
         onAfterAsyncSuccess(res);
       } catch (err) {
@@ -42,7 +45,7 @@ const useItemsRequester = initialValues => {
       onBeforeAsync('');
 
       try {
-        const res = await API.graphql(graphqlOperation(getItem, { id }));
+        const res = await API.graphql({ query: getItem, variables: { id }, authMode: 'API_KEY' });
         setItem(res.data.getItem);
         onAfterAsyncSuccess(res);
       } catch (err) {

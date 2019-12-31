@@ -1,0 +1,15 @@
+type Item 
+  @model 
+  @auth(rules: [
+      { allow: private, operations: [create, update, delete] },
+      { allow: public, operations: [read] }
+    ])
+{
+  id: ID!
+  title: String!
+	description: String
+	tags: [String]
+	url: String
+	imgUrl: String
+	price: Float
+}

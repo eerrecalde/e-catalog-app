@@ -1,20 +1,37 @@
 {
 	"api": {
-		"myItems": {
+		"ItemsCatalog": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
-					"additionalAuthenticationProviders": [],
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "API_KEY",
+							"apiKeyConfig": {
+								"description": "ItemsCatalogApi01",
+								"apiKeyExpirationDays": 7
+							}
+						},
+						{
+							"authenticationType": "AWS_IAM"
+						}
+					],
 					"defaultAuthentication": {
-						"authenticationType": "API_KEY",
-						"apiKeyConfig": {
-							"description": "apiKey",
-							"apiKeyExpirationDays": "30"
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authsupermanapp40628500"
 						}
 					}
 				}
 			}
+		}
+	},
+	"auth": {
+		"supermanapp40628500": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
 		}
 	}
 }

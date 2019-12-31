@@ -41,8 +41,8 @@ function ItemFormView({ item, onSubmit } = {}) {
     const itm = {};
 
     Object.keys(inputs).forEach(k => {
-      // itm[k] = inputs[k] || null;
-      itm[k] = inputs[k];
+      itm[k] = inputs[k] || null;
+      // itm[k] = inputs[k];
     });
 
     if (inputs.title !== '' && !inputs.id) {

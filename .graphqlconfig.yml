@@ -1,6 +1,6 @@
 projects:
-  myItems:
-    schemaPath: amplify/backend/api/myItems/build/schema.graphql
+  ItemsCatalog:
+    schemaPath: amplify/backend/api/ItemsCatalog/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

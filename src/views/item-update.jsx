@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { withAuthenticator } from 'aws-amplify-react';
+
 import ItemForm from '../components/item-form/item-form';
 
 function ItemCrud() {
@@ -17,4 +19,5 @@ function ItemCrud() {
   );
 }
 
-export default ItemCrud;
+export default withAuthenticator(ItemCrud, { includeGreetings: true });
+// export default ItemCrud;

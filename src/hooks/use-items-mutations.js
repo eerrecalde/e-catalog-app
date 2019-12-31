@@ -91,7 +91,7 @@ const useItemsRequester = (initialValues, callback) => {
       console.log('removing item');
       deleteItemAction(initialValues.itemOperation.id);
     }
-  }, [initialValues]);
+  }, [initialValues, callback]);
 
   return {
     error,

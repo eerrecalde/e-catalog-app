@@ -9,6 +9,18 @@
             "UnauthRoleName": "amplify-superman-app-env-103517-unauthRole",
             "StackName": "amplify-superman-app-env-103517",
             "StackId": "arn:aws:cloudformation:eu-west-2:158607045791:stack/amplify-superman-app-env-103517/13a4cbe0-2639-11ea-9ded-0ab07291f102"
+        },
+        "categories": {
+            "function": {
+                "supermanappf022a2a1CustomMessage": {
+                    "REDIRECTURL": "",
+                    "EMAILSUBJECT": "",
+                    "EMAILMESSAGE": ""
+                }
+            },
+            "auth": {
+                "supermanapp40628500": {}
+            }
         }
     }
 }
