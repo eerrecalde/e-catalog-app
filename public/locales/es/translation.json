@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "flagCode": "es",
+    "title": "es"
+  },
+  "header": {
+    "title": "Aplicación React",
+    "nav": {
+      "Catalog": "Catálogo",
+      "About": "Nosotros"
+    },
+    "darkMode": "Modo Oscuro"
+  },
+  "catalog": {
+    "item": {
+      "view": "Ver más"
+    }
+  }
+}

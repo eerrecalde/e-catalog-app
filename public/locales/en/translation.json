@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "flagCode": "gb",
+    "title": "en"
+  },
+  "header": {
+    "title": "React Application",
+    "nav": {
+      "Catalog": "Catalog",
+      "About": "About"
+    },
+    "darkMode": "Dark Mode"
+  },
+  "catalog": {
+    "item": {
+      "view": "View"
+    }
+  }
+}

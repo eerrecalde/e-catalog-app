@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import useOnInputAction from '../../hooks/use-on-input-action';
 
-function DarkSwitch({ isChecked } = { isChecked: false }) {
+function DarkSwitch({ isChecked, onDarkModeChange } = { isChecked: false }) {
+  const { t } = useTranslation();
+
   function onChecked() {
     localStorage.setItem('darkSwitch', 'dark');
     document.body.setAttribute('data-theme', 'dark');
@@ -17,7 +20,10 @@ function DarkSwitch({ isChecked } = { isChecked: false }) {
 
   const {
     checked, handleInputChange,
-  } = useOnInputAction(isChecked, onChecked, onUnchecked);
+  } = useOnInputAction(isChecked, onChecked, onUnchecked, v => {
+    console.log('v', v);
+    onDarkModeChange(v);
+  });
 
   if (checked && isChecked) {
     onChecked();
@@ -28,7 +34,7 @@ function DarkSwitch({ isChecked } = { isChecked: false }) {
     <span className="custom-control custom-switch ml-auto">
       <input type="checkbox" checked={checked} onChange={handleInputChange} className="custom-control-input" name="darkSwitch" id="darkSwitch" />
       <label className="custom-control-label cursor-pointer" htmlFor="darkSwitch">
-        Dark Mode
+        {t('header.darkMode')}
       </label>
     </span>
   );
@@ -36,6 +42,7 @@ function DarkSwitch({ isChecked } = { isChecked: false }) {
 
 DarkSwitch.propTypes = {
   isChecked: PropTypes.bool.isRequired,
+  onDarkModeChange: PropTypes.func.isRequired,
 };
 
 export default DarkSwitch;

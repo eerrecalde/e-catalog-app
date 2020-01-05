@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API } from 'aws-amplify';
 
 import { getItem, listItems } from '../graphql/queries';
 
