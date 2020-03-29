@@ -27,13 +27,17 @@ const useItemsRequester = initialValues => {
       setError(errorMsg);
     }
 
-    async function getItemsList() {
+    async function getItemsList(id) {
       onBeforeAsync('');
 
       API.configure();
 
       try {
-        const res = await API.graphql({ query: listItems, authMode: 'API_KEY' });
+        const res = await API.graphql({
+          query: listItems,
+          variables: { filter: { owner: { contains: id } } },
+          authMode: 'API_KEY',
+        });
         setItems(res.data.listItems.items);
         onAfterAsyncSuccess(res);
       } catch (err) {
@@ -59,7 +63,7 @@ const useItemsRequester = initialValues => {
 
     if (initialValues.itemOperation === 'getItems') {
       console.log('gettingItems');
-      getItemsList();
+      getItemsList(initialValues.userId);
       return;
     }
 

@@ -6,12 +6,12 @@ import ItemUpdate from '../views/item-update';
 
 export const routes = [
   {
-    path: '/',
+    path: '/catalog/:id',
     name: 'Catalog',
     component: Catalog,
   },
   {
-    path: '/about',
+    path: '/',
     name: 'About',
     component: About,
   },

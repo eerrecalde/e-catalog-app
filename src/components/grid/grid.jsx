@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import useItemsRequester from '../../hooks/use-items-requester';
 import ItemsGridView from './grid.view';
 
-function ItemsGrid() {
+function ItemsGrid({ id }) {
   const [itemOperation, setItemOperation] = useState('getItems');
   function getParsedStr(str) {
     let arr = [];
@@ -17,7 +18,7 @@ function ItemsGrid() {
   let currentFavorites = (favoritesStr ? getParsedStr(favoritesStr) : []);
 
   const { error, loading, items } = useItemsRequester(
-    { itemOperation, setItemOperation },
+    { userId: id, itemOperation, setItemOperation },
     msg => {
       console.log('done', msg);
     },
@@ -44,5 +45,9 @@ function ItemsGrid() {
     />
   );
 }
+
+ItemsGrid.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
 export default ItemsGrid;
