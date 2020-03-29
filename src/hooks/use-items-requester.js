@@ -30,14 +30,28 @@ const useItemsRequester = initialValues => {
     async function getItemsList(id) {
       onBeforeAsync('');
 
+      let filter = null;
+      const optsObj = {
+        query: listItems,
+        authMode: 'API_KEY',
+      };
+
       API.configure();
 
+      if (!id) {
+        console.log('getItemsList error.. No id provided');
+      }
+
+      if (id && id !== 'all') {
+        filter = { owner: { contains: id } };
+      }
+
+      if (filter) {
+        optsObj.variables = { filter };
+      }
+
       try {
-        const res = await API.graphql({
-          query: listItems,
-          variables: { filter: { owner: { contains: id } } },
-          authMode: 'API_KEY',
-        });
+        const res = await API.graphql(optsObj);
         setItems(res.data.listItems.items);
         onAfterAsyncSuccess(res);
       } catch (err) {

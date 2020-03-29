@@ -9,6 +9,7 @@ function ItemsGridView({
     <div className="container">
       { loading ? (<p>Loading...</p>) : '' }
       { error ? (<p>{error}</p>) : '' }
+      { !loading && items && items.length === 0 ? (<p>No results for your query</p>) : '' }
       <ul className="row">
         {items.map(i => (
           <li key={i.id} className="col-12 col-xl-3 col-lg-4 col-sm-6 mb-3 align-self-stretch">
