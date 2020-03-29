@@ -1,14 +1,14 @@
 {
-    "identityPoolName": "supermanapp40628500_identitypool_40628500",
+    "identityPoolName": "TheCatalogAuth_identitypool_31d39f82",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "superm40628500",
-    "userPoolName": "supermanapp40628500_userpool_40628500",
+    "resourceNameTruncated": "TheCat8b37bc44",
+    "userPoolName": "TheCatalogPool",
     "autoVerifiedAttributes": [
         "email"
     ],
-    "mfaConfiguration": "OFF",
+    "mfaConfiguration": "OPTIONAL",
     "mfaTypes": [
-        "SMS Text Message"
+        "TOTP"
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
@@ -28,10 +28,22 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "superm40628500_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "TheCat8b37bc44_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "supermanapp40628500",
+    "useDefault": "manual",
     "authSelections": "identityPoolAndUserPool",
+    "resourceName": "TheCatalogAuth",
+    "usernameAttributes": [
+        "email"
+    ],
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "triggers": "{}",
+    "hostedUI": false,
+    "userPoolGroupList": [
+        "User",
+        "Admin"
+    ],
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -44,9 +56,6 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
-    "triggers": "{}",
-    "userPoolGroupList": [],
     "parentStack": {
         "Ref": "AWS::StackId"
     },

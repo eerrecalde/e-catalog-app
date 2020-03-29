@@ -1,6 +1,29 @@
 {
+	"auth": {
+		"userPoolGroups": {
+			"service": "Cognito-UserPool-Groups",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "TheCatalogAuth",
+					"attributes": [
+						"UserPoolId",
+						"AppClientIDWeb",
+						"AppClientID",
+						"IdentityPoolId"
+					]
+				}
+			]
+		},
+		"TheCatalogAuth": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
 	"api": {
-		"ItemsCatalog": {
+		"thecatalog": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
@@ -9,29 +32,19 @@
 						{
 							"authenticationType": "API_KEY",
 							"apiKeyConfig": {
-								"description": "ItemsCatalogApi01",
+								"description": "TheCatalogApiKey",
 								"apiKeyExpirationDays": 7
 							}
-						},
-						{
-							"authenticationType": "AWS_IAM"
 						}
 					],
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
-							"userPoolId": "authsupermanapp40628500"
+							"userPoolId": "authTheCatalogAuth"
 						}
 					}
 				}
 			}
-		}
-	},
-	"auth": {
-		"supermanapp40628500": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
 		}
 	}
 }

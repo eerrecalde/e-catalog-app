@@ -1,7 +1,13 @@
 type Item 
   @model 
   @auth(rules: [
-      { allow: private, operations: [create, update, delete] },
+      # Defaults to use the "owner" field.
+      { allow: owner },
+
+      # Admin users can access any operation.
+      { allow: groups, groups: ["Admin"] },
+
+      # Allow public to read
       { allow: public, operations: [read] }
     ])
 {

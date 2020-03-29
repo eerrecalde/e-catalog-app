@@ -1,25 +1,19 @@
 {
-    "env": {
+    "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-superman-app-env-103517-authRole",
-            "UnauthRoleArn": "arn:aws:iam::158607045791:role/amplify-superman-app-env-103517-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::158607045791:role/amplify-superman-app-env-103517-authRole",
+            "AuthRoleName": "amplify-thecatalog-dev-05014-authRole",
+            "UnauthRoleArn": "arn:aws:iam::158607045791:role/amplify-thecatalog-dev-05014-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::158607045791:role/amplify-thecatalog-dev-05014-authRole",
             "Region": "eu-west-2",
-            "DeploymentBucketName": "amplify-superman-app-env-103517-deployment",
-            "UnauthRoleName": "amplify-superman-app-env-103517-unauthRole",
-            "StackName": "amplify-superman-app-env-103517",
-            "StackId": "arn:aws:cloudformation:eu-west-2:158607045791:stack/amplify-superman-app-env-103517/13a4cbe0-2639-11ea-9ded-0ab07291f102"
+            "DeploymentBucketName": "amplify-thecatalog-dev-05014-deployment",
+            "UnauthRoleName": "amplify-thecatalog-dev-05014-unauthRole",
+            "StackName": "amplify-thecatalog-dev-05014",
+            "StackId": "arn:aws:cloudformation:eu-west-2:158607045791:stack/amplify-thecatalog-dev-05014/ec459e00-6fc4-11ea-b8f7-0a7f7081acf8",
+            "AmplifyAppId": "d2yazn74st4wc2"
         },
         "categories": {
-            "function": {
-                "supermanappf022a2a1CustomMessage": {
-                    "REDIRECTURL": "",
-                    "EMAILSUBJECT": "",
-                    "EMAILMESSAGE": ""
-                }
-            },
             "auth": {
-                "supermanapp40628500": {}
+                "TheCatalogAuth": {}
             }
         }
     }

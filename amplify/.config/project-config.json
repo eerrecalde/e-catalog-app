@@ -1,6 +1,6 @@
 {
-    "projectName": "superman-app",
-    "version": "2.0",
+    "projectName": "TheCatalog",
+    "version": "3.0",
     "frontend": "javascript",
     "javascript": {
         "framework": "react",
