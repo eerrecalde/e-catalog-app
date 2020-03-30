@@ -18,4 +18,5 @@ type Item
 	url: String
 	imgUrl: String
 	price: Float
+  owner: String
 }

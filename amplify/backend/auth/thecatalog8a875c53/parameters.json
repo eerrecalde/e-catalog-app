@@ -1,14 +1,14 @@
 {
-    "identityPoolName": "TheCatalogAuth_identitypool_31d39f82",
+    "identityPoolName": "thecatalog8a875c53_identitypool_8a875c53",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "TheCat8b37bc44",
-    "userPoolName": "TheCatalogPool",
+    "resourceNameTruncated": "thecat8a875c53",
+    "userPoolName": "thecatalog8a875c53_userpool_8a875c53",
     "autoVerifiedAttributes": [
         "email"
     ],
-    "mfaConfiguration": "OPTIONAL",
+    "mfaConfiguration": "OFF",
     "mfaTypes": [
-        "TOTP"
+        "SMS Text Message"
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
@@ -28,22 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "TheCat8b37bc44_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "thecat8a875c53_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "useDefault": "manual",
+    "resourceName": "thecatalog8a875c53",
     "authSelections": "identityPoolAndUserPool",
-    "resourceName": "TheCatalogAuth",
-    "usernameAttributes": [
-        "email"
-    ],
-    "userPoolGroups": true,
-    "adminQueries": false,
-    "triggers": "{}",
-    "hostedUI": false,
-    "userPoolGroupList": [
-        "User",
-        "Admin"
-    ],
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -56,6 +44,12 @@
             "Arn"
         ]
     },
+    "useDefault": "default",
+    "usernameAttributes": [
+        "email"
+    ],
+    "triggers": "{}",
+    "userPoolGroupList": [],
     "parentStack": {
         "Ref": "AWS::StackId"
     },

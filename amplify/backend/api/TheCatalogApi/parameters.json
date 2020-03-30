@@ -1,10 +1,10 @@
 {
-    "AppSyncApiName": "thecatalog",
+    "AppSyncApiName": "TheCatalogApi",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authTheCatalogAuth",
+            "auththecatalog8a875c53",
             "Outputs.UserPoolId"
         ]
     }
