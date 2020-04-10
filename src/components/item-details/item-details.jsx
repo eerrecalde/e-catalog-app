@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useItemsRequester from '../../hooks/use-items-requester';
+import ItemDetailsView from './item-details-view';
 
-function ItemView({ id }) {
+function ItemDetails({ id }) {
   const [itemOperation, setItemOperation] = useState('getItemById');
 
   const { error, loading, item } = useItemsRequester(
@@ -11,7 +12,7 @@ function ItemView({ id }) {
       itemOperation,
       setItemOperation,
     },
-    msg => {
+    (msg) => {
       console.log('done', msg);
     },
     [],
@@ -23,13 +24,13 @@ function ItemView({ id }) {
       { error ? (<p>{error}</p>) : '' }
 
       {item ? (
-        <div>
-          <h4>{item.title}</h4>
-          <h5>{item.price}</h5>
-          <p>{item.description}</p>
-          <p>{item.url}</p>
-          <p>{item.imgUrl}</p>
-        </div>
+        <ItemDetailsView
+          title={item.title}
+          price={item.price}
+          description={item.description}
+          url={item.url}
+          imgUrl={item.imgUrl}
+        />
       ) : (
         <div>
         No data found
@@ -39,8 +40,8 @@ function ItemView({ id }) {
   );
 }
 
-ItemView.propTypes = {
+ItemDetails.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-export default ItemView;
+export default ItemDetails;

@@ -3,7 +3,7 @@ import { API } from 'aws-amplify';
 
 import { getItem, listItems } from '../graphql/queries';
 
-const useItemsRequester = initialValues => {
+const useItemsRequester = (initialValues) => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [item, setItem] = useState(null);

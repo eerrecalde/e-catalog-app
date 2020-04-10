@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
+import { GridView } from 'ecatalog';
 import useItemsRequester from '../../hooks/use-items-requester';
-import ItemsGridView from './grid.view';
 
 function ItemsGrid({ id }) {
+  const { t } = useTranslation();
+  const translations = {};
   const [itemOperation, setItemOperation] = useState('getItems');
   function getParsedStr(str) {
     let arr = [];
@@ -25,6 +28,9 @@ function ItemsGrid({ id }) {
     [],
   );
 
+  translations['catalog.item.view'] = t('catalog.item.view');
+  translations['catalog.item.external'] = t('catalog.item.external');
+
   function onCheckChanged(e) {
     if (currentFavorites.indexOf(e) > -1) {
       currentFavorites = currentFavorites.filter(el => el !== e);
@@ -36,12 +42,13 @@ function ItemsGrid({ id }) {
   }
 
   return (
-    <ItemsGridView
+    <GridView
       loading={loading}
       error={error}
       items={items}
       favorites={currentFavorites}
       onCheckChanged={onCheckChanged}
+      translations={translations}
     />
   );
 }

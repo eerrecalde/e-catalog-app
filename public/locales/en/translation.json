@@ -13,7 +13,8 @@
   },
   "catalog": {
     "item": {
-      "view": "View"
+      "view": "View",
+      "external": "External Link"
     }
   }
 }

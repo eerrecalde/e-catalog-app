@@ -13,7 +13,8 @@
   },
   "catalog": {
     "item": {
-      "view": "Ver más"
+      "view": "Ver más",
+      "external": "Link externo"
     }
   }
 }
