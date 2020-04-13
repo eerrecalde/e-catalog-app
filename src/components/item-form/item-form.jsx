@@ -1,88 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ItemFormView from './item-form.view';
-import useItemsRequester from '../../hooks/use-items-requester';
-import useItemsMutations from '../../hooks/use-items-mutations';
+import { useMutateData } from '../../hooks/use-mutate-data';
+import { useFetchData } from '../../hooks/use-fetch-data';
 import Alert from '../alert/alert';
 
 function ItemForm({ id }) {
-  const [itemOperation, setItemOperation] = useState('getItemById');
-  const [formItem, setFormItem] = useState(null);
-  const [alert, setAlert] = useState({ show: false, msg: '' });
-  const { errorRequest, loadingRequest, item } = useItemsRequester(
+  const [alert, setAlert] = useState({ show: false });
+  const [itemDataState] = useFetchData(
     {
-      item: { id },
-      itemOperation,
-      setItemOperation,
+      queryId: 'getItem',
+      variables: id ? { id } : null,
     },
-    msg => {
-      console.log('done', msg);
-    },
-    [],
+    null,
   );
 
-  const { errorMutate, loadingMutate } = useItemsMutations({
-    item: formItem,
-    itemOperation,
-    setItemOperation,
-  }, msg => {
-    console.log('done', msg, errorMutate, loadingMutate);
+  const {
+    isLoading: loadingRequest,
+    isError: requestIsError,
+    errorMsg: requestErrorMsg,
+    data: item,
+  } = itemDataState;
+  const [mutateDataState = {}, mutateData] = useMutateData('createItem');
 
-    /* Alert related stuff */
-    setAlert({ show: true, msg });
-  }, [formItem, itemOperation]);
+  const {
+    isLoading: loadingMutate,
+    isError: mutateIsError,
+    errorMsg: mutateErrorMsg = null,
+    data: itemCreated,
+  } = mutateDataState;
 
   function onSubmitAction(obj = {}) {
-    console.log('onSubmitAction', obj);
-    if (id) {
-      console.log('update');
-    } else {
-      console.log('create');
-    }
-
     if (!obj.item || !obj.type) {
       return;
     }
 
-
-    setFormItem(obj.item);
-    console.log('onSubmitAction 2', formItem);
-    setItemOperation(obj.type);
-    console.log('onSubmitAction 3', itemOperation);
+    mutateData(obj.item);
   }
 
-  console.log('re-execute item-form', errorMutate);
-
-  /* Alert related stuff */
-  if (errorRequest) {
-    setAlert({
-      show: true, variant: 'danger', closeInSeconds: 0, msg: errorRequest,
-    });
-  }
-
-  /* Alert related stuff */
-  if (errorMutate) {
-    setAlert({
-      show: true, variant: 'danger', closeInSeconds: 0, msg: errorMutate,
-    });
-  }
-
-  /* Alert related stuff */
-  function onAlertCloseAction() {
-    setAlert({ show: false });
-  }
+  useEffect(() => {
+    let alertConfig = { show: false };
+    if (requestIsError) {
+      alertConfig = { show: true, msg: requestErrorMsg, variant: 'danger', closeInSeconds: 0 };
+    }
+    if (mutateIsError) {
+      alertConfig = { show: true, msg: mutateErrorMsg, variant: 'danger', closeInSeconds: 0 };
+    }
+    if (!mutateErrorMsg && itemCreated) {
+      alertConfig = {
+        show: true,
+        msg: 'Item created successfully!',
+        variant: 'success',
+        closeInSeconds: 3,
+      };
+    }
+    setAlert(alertConfig);
+  }, [requestErrorMsg, requestIsError, mutateErrorMsg, mutateIsError, itemCreated]);
 
   return (
     <div className="container">
+      <pre>{JSON.stringify(itemDataState, null, '\t')}</pre>
+      <pre>{JSON.stringify(mutateDataState, null, '\t')}</pre>
       <Alert
         show={alert.show}
         text={alert.msg}
         variant={alert.variant || undefined}
         closeInSeconds={alert.closeInSeconds}
         dismissible={alert.dismissible || undefined}
-        onAlertClose={onAlertCloseAction}
+        onAlertClose={() => {
+          setAlert({ show: false });
+        }}
       />
-      { loadingRequest || loadingMutate ? (<p>{loadingRequest || loadingMutate}</p>) : '' }
+      {loadingRequest || loadingMutate ? <p>{loadingRequest || loadingMutate}</p> : ''}
+      {requestErrorMsg || mutateErrorMsg ? <p>{requestErrorMsg || mutateErrorMsg}</p> : ''}
       <ItemFormView item={item || {}} onSubmit={onSubmitAction} />
     </div>
   );

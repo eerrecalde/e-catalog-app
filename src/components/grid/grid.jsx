@@ -1,53 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { GridView } from 'ecatalog';
-import useItemsRequester from '../../hooks/use-items-requester';
+// import useItemsRequester from '../../hooks/use-items-requester';
+import { useFetchData } from '../../hooks/use-fetch-data';
+import useLocalStorage from '../../hooks/use-localstorage';
 
 function ItemsGrid({ id }) {
   const { t } = useTranslation();
   const translations = {};
-  const [itemOperation, setItemOperation] = useState('getItems');
-  function getParsedStr(str) {
-    let arr = [];
 
-    arr = str.split(',');
-
-    return arr;
-  }
-
-  const favoritesStr = localStorage.getItem('favorites');
-
-  let currentFavorites = (favoritesStr ? getParsedStr(favoritesStr) : []);
-
-  const { error, loading, items } = useItemsRequester(
-    { userId: id, itemOperation, setItemOperation },
-    msg => {
-      console.log('done', msg);
+  const [reqState] = useFetchData(
+    {
+      queryId: 'listItems',
+      variables: { owner: { contains: id } },
     },
-    [],
+    { items: [] },
   );
+
+  const { isLoading, isError, errorMsg, data } = reqState;
+  const { items } = data;
 
   translations['catalog.item.view'] = t('catalog.item.view');
   translations['catalog.item.external'] = t('catalog.item.external');
 
-  function onCheckChanged(e) {
-    if (currentFavorites.indexOf(e) > -1) {
-      currentFavorites = currentFavorites.filter(el => el !== e);
+  const [favoritesStr, setFavorites] = useLocalStorage('favorites');
+  const favorites = favoritesStr.length ? favoritesStr.split(',') : [];
+  function onFavoriteChanged(e) {
+    if (favorites.indexOf(e) > -1) {
+      setFavorites(favorites.filter((el) => el !== e));
     } else {
-      currentFavorites = [...currentFavorites, e];
+      setFavorites([...favorites, e]);
     }
-
-    localStorage.setItem('favorites', currentFavorites);
   }
 
   return (
     <GridView
-      loading={loading}
-      error={error}
+      loading={isLoading}
+      error={isError ? errorMsg : ''}
       items={items}
-      favorites={currentFavorites}
-      onCheckChanged={onCheckChanged}
+      favorites={favorites}
+      onCheckChanged={onFavoriteChanged}
       translations={translations}
     />
   );

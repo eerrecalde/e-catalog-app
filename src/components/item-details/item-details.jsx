@@ -1,27 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import useItemsRequester from '../../hooks/use-items-requester';
+import { useFetchData } from '../../hooks/use-fetch-data';
 import ItemDetailsView from './item-details-view';
 
 function ItemDetails({ id }) {
-  const [itemOperation, setItemOperation] = useState('getItemById');
-
-  const { error, loading, item } = useItemsRequester(
+  const [itemDataState] = useFetchData(
     {
-      item: { id },
-      itemOperation,
-      setItemOperation,
+      queryId: 'getItem',
+      variables: { id },
     },
-    (msg) => {
-      console.log('done', msg);
-    },
-    [],
+    null,
   );
+
+  const { isLoading, isError, errorMsg, data: item } = itemDataState;
 
   return (
     <div className="container">
-      { loading ? (<p>Loading...</p>) : '' }
-      { error ? (<p>{error}</p>) : '' }
+      {isLoading ? <p>Loading...</p> : ''}
+      {isError ? <p>{errorMsg}</p> : ''}
 
       {item ? (
         <ItemDetailsView
@@ -32,9 +28,7 @@ function ItemDetails({ id }) {
           imgUrl={item.imgUrl}
         />
       ) : (
-        <div>
-        No data found
-        </div>
+        <div>No data found</div>
       )}
     </div>
   );

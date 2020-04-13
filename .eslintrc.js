@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'airbnb', 'prettier'],
   globals: {
     $: 'readonly',
     Atomics: 'readonly',
@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks'],
+  plugins: ['react', 'react-hooks', 'prettier'],
   rules: {
     'arrow-parens': [2, 'always'],
     'import/no-extraneous-dependencies': [

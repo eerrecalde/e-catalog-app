@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 const defaultOptions = { variant: 'info', dismissible: true };
 let timeout; // eslint-disable-line
 
-function Alert({
-  show, text, dismissible, closeInSeconds, variant, onAlertClose,
-}) {
+function Alert({ show, text, dismissible, closeInSeconds, variant, onAlertClose }) {
   clearTimeout(timeout);
   timeout = null;
   if (show && closeInSeconds) {
@@ -16,18 +14,21 @@ function Alert({
   }
 
   return (
-    <div
-      className={`alert-container position-fixed w-100 fade ${(show ? 'show' : '')}`}
-    >
-      <div className={`alert alert-${variant || defaultOptions.variant} ${(dismissible || defaultOptions.dismissible ? 'alert-dismissible' : '')}`} role="alert">
+    <div className={`alert-container position-fixed w-100 fade ${show ? 'show' : ''}`}>
+      <div
+        className={`alert alert-${variant || defaultOptions.variant} ${
+          dismissible || defaultOptions.dismissible ? 'alert-dismissible' : ''
+        }`}
+        role="alert"
+      >
         {text}
-        {
-          dismissible || defaultOptions.dismissible ? (
-            <button type="button" className="close" aria-label="Close" onClick={onAlertClose}>
-              <span aria-hidden="true">&times;</span>
-            </button>
-          ) : ''
-        }
+        {dismissible || defaultOptions.dismissible ? (
+          <button type="button" className="close" aria-label="Close" onClick={onAlertClose}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

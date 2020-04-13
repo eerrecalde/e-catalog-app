@@ -3,13 +3,13 @@ import { useState } from 'react';
 const useFormInputHandle = (initialValues, callback) => {
   const [inputs, setInputs] = useState(initialValues);
   console.log('useFormInputHandle', initialValues);
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
       callback();
     }
   };
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     event.persist();
     setInputs(() => ({ ...inputs, [event.target.name]: event.target.value }));
   };
