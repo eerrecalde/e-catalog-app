@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import useFormInputHandle from '../../hooks/use-form-input-handle';
 
 function ItemFormView({ item, onSubmit } = {}) {
-  console.log('ITM', item);
-
   const defaultFormData = {
-    title: '',
-    description: '',
-    price: 0,
-    url: '',
-    imgUrl: '',
+    id: item.id || null,
+    title: item.title || '',
+    description: item.description || '',
+    price: item.price || 0,
+    url: item.url || '',
+    imgUrl: item.imgUrl || '',
   };
 
   const [formItem, setformItem] = useState(defaultFormData);

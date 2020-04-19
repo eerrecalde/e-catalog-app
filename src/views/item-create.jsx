@@ -1,6 +1,6 @@
 import React from 'react';
 import { withAuthenticator } from 'aws-amplify-react';
-import ItemForm from '../components/item-form/item-form';
+import ItemForm from '../components/item-form/item-create-form';
 
 function ItemCrud() {
   return (

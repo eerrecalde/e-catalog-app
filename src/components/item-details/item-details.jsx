@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useFetchData } from '../../hooks/use-fetch-data';
+import { API } from 'aws-amplify';
+import { useQuery } from 'react-query';
+import { getItem } from '../../graphql/queries';
 import ItemDetailsView from './item-details-view';
 
 function ItemDetails({ id }) {
-  const [itemDataState] = useFetchData(
-    {
-      queryId: 'getItem',
+  const { status, data: item, error, isFetching } = useQuery('item-fetch', async () => {
+    const { data } = await API.graphql({
+      query: getItem,
       variables: { id },
-    },
-    null,
-  );
-
-  const { isLoading, isError, errorMsg, data: item } = itemDataState;
+      authMode: 'API_KEY',
+    });
+    return data.getItem || null;
+  });
 
   return (
     <div className="container">
-      {isLoading ? <p>Loading...</p> : ''}
-      {isError ? <p>{errorMsg}</p> : ''}
-
+      {status === 'loading' ? 'Loading...' : ''}
+      {status === 'error' ? error.message : ''}
       {item ? (
         <ItemDetailsView
           title={item.title}
@@ -30,6 +30,7 @@ function ItemDetails({ id }) {
       ) : (
         <div>No data found</div>
       )}
+      <div>{isFetching ? 'Updating in background...' : ' '}</div>
     </div>
   );
 }
