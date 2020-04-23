@@ -15,7 +15,7 @@ import Loading from './components/loading/loading';
 Amplify.configure(config);
 
 ReactDOM.render(
-  <Suspense fallback={(<Loading />)}>
+  <Suspense fallback={<Loading />}>
     <I18nextProvider i18n={i18n}>
       <App />
     </I18nextProvider>

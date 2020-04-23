@@ -7,7 +7,10 @@
     "title": "Aplicación React",
     "nav": {
       "Catalog": "Catálogo",
-      "About": "Nosotros"
+      "About": "Nosotros",
+      "Admin": "Admin",
+      "Item Create": "Crear anuncio",
+      "Admin Dashboard": "Tablero admin"
     },
     "darkMode": "Modo Oscuro"
   },

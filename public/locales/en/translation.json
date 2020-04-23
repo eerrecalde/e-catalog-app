@@ -7,7 +7,10 @@
     "title": "React Application",
     "nav": {
       "Catalog": "Catalog",
-      "About": "About"
+      "About": "About",
+      "Admin": "Admin",
+      "Item Create": "Create an ad",
+      "Admin Dashboard": "Admin Dashboard"
     },
     "darkMode": "Dark Mode"
   },

@@ -64,10 +64,7 @@ function ItemForm() {
       // After success or failure, refetch the item-fetch query
       onSettled: () => {
         console.log('mutation finished! updating in 5 secs..');
-        setTimeout(() => {
-          queryCache.refetchQueries('items-fetch');
-          console.log('mutation updated');
-        }, 5000);
+        // queryCache.refetchQueries('items-fetch');
       },
     },
   );

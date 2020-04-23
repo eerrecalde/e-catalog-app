@@ -1,8 +1,8 @@
 import Catalog from '../views/catalog';
 import About from '../views/about';
-import ItemCreate from '../views/item-create';
 import ItemView from '../views/item-view';
-import ItemUpdate from '../views/item-update';
+import Admin from '../views/admin';
+import NoMatch from '../views/no-match';
 
 export const routes = [
   {
@@ -16,22 +16,21 @@ export const routes = [
     component: About,
   },
   {
-    path: '/item-create',
-    name: 'Item Create',
-    component: ItemCreate,
-    hidden: true,
-  },
-  {
     path: '/item-view/:id',
     name: 'Item View',
     component: ItemView,
-    hidden: true,
+    isHidden: true,
   },
   {
-    path: '/item-update/:id',
-    name: 'Item Update',
-    component: ItemUpdate,
-    hidden: true,
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+  },
+  {
+    path: '*',
+    name: 'No Match',
+    component: NoMatch,
+    isHidden: true,
   },
 ];
 

@@ -25,6 +25,7 @@ module.exports = {
         devDependencies: ['**/*.stories.jsx'],
       },
     ],
-    'operator-linebreak': ['error', 'after'],
+    'operator-linebreak': 1,
+    'react/jsx-indent': 1,
   },
 };

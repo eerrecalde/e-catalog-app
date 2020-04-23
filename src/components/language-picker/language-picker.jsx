@@ -14,28 +14,34 @@ function LanguagePicker() {
 
   return (
     <div className="btn-group">
-      <button type="button" className="btn button-primary btn-link dropdown-toggle p-0 mr-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button
+        type="button"
+        className="btn button-primary btn-link dropdown-toggle p-0 mr-3"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         <span className="icon mr-2">
           <FlagIcon code={selected.flagCode} />
         </span>
         {selected.title}
       </button>
       <div className="dropdown-menu">
-        {
-          languages.map(language => (
-            <button
-              key={language.title}
-              type="button"
-              className={`dropdown-item nav-link ${(selected.title === language.title ? 'active' : '')}`}
-              onClick={() => languageChange(language)}
-            >
-              <span className="icon mr-2">
-                <FlagIcon code={language.flagCode} />
-              </span>
-              {language.title}
-            </button>
-          ))
-        }
+        {languages.map((language) => (
+          <button
+            key={language.title}
+            type="button"
+            className={`dropdown-item nav-link ${
+              selected.title === language.title ? 'active' : ''
+            }`}
+            onClick={() => languageChange(language)}
+          >
+            <span className="icon mr-2">
+              <FlagIcon code={language.flagCode} />
+            </span>
+            {language.title}
+          </button>
+        ))}
       </div>
     </div>
   );

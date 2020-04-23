@@ -58,6 +58,7 @@ function ItemsGrid({ id }) {
       // After success or failure, refetch the items-fetch query
       onSettled: () => {
         setTimeout(() => {
+          console.log('Refetch!');
           queryCache.refetchQueries('items-fetch');
         }, 5000);
       },
@@ -68,7 +69,7 @@ function ItemsGrid({ id }) {
   const { status, data: items = [], error, isFetching } = useQuery('items-fetch', async () => {
     const { data } = await API.graphql({
       query: listItems,
-      variables: { owner: { contains: id } },
+      variables: { owner: { contains: id }, limit: 50 },
       authMode: 'API_KEY',
     });
 
