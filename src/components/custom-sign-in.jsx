@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AmplifySignIn } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify';
 import useFormInputHandle from '../hooks/use-form-input-handle';
 import { AuthContext } from '../context';
@@ -7,7 +6,7 @@ import { AuthContext } from '../context';
 function CustomSignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { authState, setAuthState } = useContext(AuthContext);
+  const { setAuthState } = useContext(AuthContext);
 
   const { inputs, setInputs, handleInputChange, handleSubmit } = useFormInputHandle(
     {
@@ -15,8 +14,6 @@ function CustomSignIn() {
       password,
     },
     async () => {
-      console.log('createItem?', inputs, 'us/pass:', username, '/', password);
-
       setUsername(inputs.username);
       setPassword(inputs.password);
     },
@@ -26,9 +23,8 @@ function CustomSignIn() {
   useEffect(() => {
     async function signIn() {
       try {
-        console.log('Trying');
         const signInData = await Auth.signIn(username, password);
-        console.log('Tried', signInData, signInData.username);
+        console.log('signInData', signInData);
         if (signInData && signInData.username) {
           setAuthState('signedIn');
         }
@@ -51,8 +47,6 @@ function CustomSignIn() {
   function resetForm() {
     setInputs();
   }
-
-  console.log('props', AmplifySignIn);
 
   return (
     <div className="p-4 d-flex justify-content-center" slot="sign-in">

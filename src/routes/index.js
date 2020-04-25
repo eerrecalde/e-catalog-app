@@ -2,6 +2,7 @@ import Catalog from '../views/catalog';
 import About from '../views/about';
 import ItemView from '../views/item-view';
 import Admin from '../views/admin';
+import Login from '../views/login';
 import NoMatch from '../views/no-match';
 
 export const routes = [
@@ -25,6 +26,12 @@ export const routes = [
     path: '/admin',
     name: 'Admin',
     component: Admin,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    isHidden: true,
   },
   {
     path: '*',
