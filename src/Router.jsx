@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/header/header';
+import { Switch, Route } from 'react-router-dom';
 import { routes } from './routes';
 import { adminRoutes } from './routes/adminReoutes';
 
@@ -18,11 +17,6 @@ function RoutesSwitch() {
   );
 }
 
-const Routes = () => (
-  <Router>
-    <Header routes={routes} />
-    <RoutesSwitch />
-  </Router>
-);
+const Routes = () => <RoutesSwitch />;
 
 export default Routes;

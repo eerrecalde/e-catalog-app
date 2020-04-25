@@ -1,0 +1,25 @@
+$ecat-yellow: #ffd000;
+$ecat-blue: #00739f;
+$ecat-light-blue: #d4e9ff;
+$ecat-cyan: #00c0e6;
+$ecat-dark-blue: #003966;
+$ecat-orange: #ff8300;
+$ecat-marine: #00bab5;
+$ecat-light-gray: #d0d2d3;
+$ecat-gray: #b3b3b3;
+$ecat-dark-gray: #444;
+$ecat-black: #222;
+
+:root {
+  --ecat-yellow: #{$ecat-yellow};
+  --ecat-blue: #{$ecat-blue};
+  --ecat-light-blue: #{$ecat-light-blue};
+  --ecat-cyan: #{$ecat-cyan};
+  --ecat-dark-blue: #{$ecat-dark-blue};
+  --ecat-orange: #{$ecat-orange};
+  --ecat-marine: #{$ecat-marine};
+  --ecat-light-gray: #{$ecat-light-gray};
+  --ecat-gray: #{$ecat-gray};
+  --ecat-dark-gray: #{$ecat-dark-gray};
+  --ecat-black: #{$ecat-black};
+}

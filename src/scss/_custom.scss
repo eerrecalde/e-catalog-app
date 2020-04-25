@@ -1,3 +1,5 @@
+@import './color-palette';
+
 // Override colours
 ul {
   padding-left: 0;
@@ -5,4 +7,32 @@ ul {
 
 ul > li {
   list-style-type: none;
+}
+
+$ecat-primary: $ecat-blue;
+$ecat-secondary: $ecat-orange;
+$ecat-tertiary: $ecat-black;
+
+$shadeStrength: 5%;
+
+$primary: $ecat-blue;
+$primary-tint: lighten($primary, $shadeStrength);
+$primary-shade: darken($primary, $shadeStrength);
+
+$secondary: $ecat-dark-gray;
+$secondary-tint: lighten($secondary, $shadeStrength);
+$secondary-shade: darken($secondary, $shadeStrength);
+
+// Amplify theme customization
+:root {
+  --main-font-family: 'Helvetica, Arial, sans-serif';
+  --amplify-font-family: var(--font-family-sans-serif);
+  --amplify-primary-color: #{$primary};
+  --amplify-primary-tint: #{$primary-tint};
+  --amplify-primary-shade: #{$primary-shade};
+  --amplify-secondary-color: #{$ecat-dark-gray};
+}
+
+body {
+  font-family: var(--font-family-sans-serif);
 }
