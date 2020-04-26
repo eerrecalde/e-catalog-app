@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Auth } from 'aws-amplify';
-import useFormInputHandle from '../hooks/use-form-input-handle';
-import { AuthContext } from '../context';
+import useFormInputHandle from '../../hooks/use-form-input-handle';
+import { AuthContext } from '../../context';
 
 function CustomSignIn() {
   const [username, setUsername] = useState('');
