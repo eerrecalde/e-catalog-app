@@ -4,7 +4,7 @@ import ItemForm from '../components/item-form/item-create-form';
 
 function ItemCrud() {
   return (
-    <div className="item-create">
+    <div className="main-container item-create">
       <ItemForm />
     </div>
   );

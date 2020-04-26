@@ -8,7 +8,7 @@ function ItemCrud() {
   const { id } = useParams();
 
   return (
-    <div className="item-create">
+    <div className="main-container item-create">
       <div className="container">
         <h3>Edit your item</h3>
       </div>

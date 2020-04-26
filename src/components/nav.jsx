@@ -17,7 +17,7 @@ function Nav({ routes, isAdmin }) {
         isHidden ? (
           ''
         ) : (
-          <li key={path} className="nav-item">
+          <li key={path} className="nav-item ml-2">
             <NavLink exact={path === '/'} className="nav-link" to={path}>
               {t(`header.nav.${name}`)}
             </NavLink>

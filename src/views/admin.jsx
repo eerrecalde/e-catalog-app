@@ -11,7 +11,7 @@ function Admin() {
 
   console.log('routes', routes);
   return (
-    <div className="admin">
+    <div className="main-container admin">
       {authState ? (
         <>
           <Nav routes={routes} isAdmin />

@@ -22,6 +22,7 @@ $primary-shade: darken($primary, $shadeStrength);
 $secondary: $ecat-dark-gray;
 $secondary-tint: lighten($secondary, $shadeStrength);
 $secondary-shade: darken($secondary, $shadeStrength);
+$border-radius: 0.1rem !default;
 
 // Amplify theme customization
 :root {

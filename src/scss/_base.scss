@@ -1,0 +1,14 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.main-container {
+  height: calc(100% - 56px);
+}
+
+.button {
+  width: inherit;
+  min-width: auto;
+}

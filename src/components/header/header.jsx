@@ -54,7 +54,11 @@ function Header() {
               <DarkSwitch isChecked={theme === 'dark'} onDarkModeChange={handleDarkModeChange} />
             </div>
             {authState === 'signedIn' ? (
-              <AmplifySignOut handleAuthStateChange={notifyStateChange} />
+              <AmplifySignOut
+                // style={signOutStyles}
+                // className="btn btn-sm"
+                handleAuthStateChange={notifyStateChange}
+              />
             ) : (
               ''
             )}

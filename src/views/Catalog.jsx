@@ -6,7 +6,7 @@ function Catalog() {
   const { id } = useParams();
 
   return (
-    <div className="catalog">
+    <div className="main-container catalog">
       <ItemsGrid id={id} />
     </div>
   );

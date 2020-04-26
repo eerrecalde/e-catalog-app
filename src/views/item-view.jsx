@@ -6,15 +6,11 @@ function ItemView() {
   const { id } = useParams();
 
   return (
-    <div>
+    <div className="main-container">
       <div className="container">
-        <h3>
-          Item view
-        </h3>
+        <h3>Item view</h3>
       </div>
-      <ItemDetails
-        id={id}
-      />
+      <ItemDetails id={id} />
     </div>
   );
 }
